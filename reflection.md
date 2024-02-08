@@ -1,3 +1,5 @@
 Use this file to record your reflection on this assignment. 
 
 What worked, what didn't, what advice would you give someone taking this course in the future?
+
+I was able to rewrite the codes into Object-Oriented Programming techniques, and include the code in the computer calss and resale shop class. Although I am not sure whether if the codes are actually correct but the testing of it did work. I wasn't sure how to connect the two classes since I wasn't sure of importing the class into the other. I also met somthing like circular impoarting because I tried to import the class in each other. Some advice I would like to give is that this assignment is not as difficult as you might expect, but you have to really understand Object-Oriented Programming, and psuedocoding was also really helpful. 
