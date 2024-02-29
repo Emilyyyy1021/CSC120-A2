@@ -9,12 +9,13 @@ selling a computer (remove from inventory), and storing the inventory for the st
 class ResaleShop:
 
     # What attributes will it need?
-    # None
+    inventory: str
+    itemID: int
 
     # How will you set up your constructor?
     # Remember: in python, all constructors have the same name (__init__)
     def __init__(self):
-        self.inventory = {}
+        self.inventory = []
         self.itemID = 0
 
     # What methods will you need?
