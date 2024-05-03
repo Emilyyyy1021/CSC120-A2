@@ -9,8 +9,7 @@ selling a computer (remove from inventory), and storing the inventory for the st
 class ResaleShop:
 
     # What attributes will it need?
-    inventory: str
-    itemID: int
+    inventory: list
 
     # How will you set up your constructor?
     # Remember: in python, all constructors have the same name (__init__)
@@ -27,7 +26,7 @@ class ResaleShop:
         adds it to the inventory, returns the assigned item_id
         """
         self.itemID += 1
-        self.inventory[self.itemID] = computer
+        self.inventory.append((self.itemID, computer))
         return self.itemID
     
     # Sell(remove) a computer
@@ -36,23 +35,29 @@ class ResaleShop:
         Takes in an item_id, removes the associated computer if it is the inventory, 
         prints error message otherwise
         """
-        if item_id in self.inventory:
-            del self.inventory[item_id]
-            print("Item", item_id, "sold!")
-        else: 
+        found = False
+        for id_, _ in self.inventory:
+            if id_ == item_id:
+                self.inventory.remove((id_, _))
+                print("Item", item_id, "sold!")
+                found = True
+                break
+        
+        # If the item_id is not found in the inventory
+        if not found:
             print("Item", item_id, "not found. Please select another item to sell.")
 
     # Print the inventory 
     def print_inventory(self):
         """
-        prints all the items in the inventory (if it isn't empty), prints error otherwise
+        Prints all the items in the inventory (if it isn't empty).
         """
         # If the inventory is not empty
         if self.inventory:
-            # For each item
-            for item_id in self.inventory:
+            # For each computer in the inventory
+            for itemID, computer in self.inventory:
                 # Print its details
-                print(f'Item ID: {item_id} : {self.inventory[item_id].description, self.inventory[item_id].processor_type, self.inventory[item_id].hard_drive_capacity, self.inventory[item_id].memory, self.inventory[item_id].operating_system, self.inventory[item_id].year_made, self.inventory[item_id].price}')
+                print(f'Item ID: {itemID} : {computer.description, computer.processor_type, computer.hard_drive_capacity, computer.memory, computer.operating_system, computer.year_made, computer.price}')
         else:
             print("No inventory to display.")
 
@@ -61,14 +66,15 @@ def main():
     shop = ResaleShop()
     # shop.buy({"description":"2019 MacBook Pro", "processor_type":"Intel", "hard_drive_capacity":256, "memory":16, 
     # "operating_system":"High Sierra", "year_made":2019, "price":1000})
-    newcomputer = Computer(
+    newComputer = Computer(
         "Mac Pro (Late 2013)",
         "3.5 GHc 6-Core Intel Xeon E5",
         1024, 64,
         "macOS Big Sur", 2013, 1500
     )
-    print(shop.buy(newcomputer))
+    print(shop.buy(newComputer))
     shop.print_inventory()
-    #shop.sell(1)
+    shop.sell(1)
 
-if __name__ == "__main__": main()
+if __name__ == "__main__": 
+    main()
